@@ -1,0 +1,7 @@
+Devlog for Team YALE Brudder.
+Example timestamp ( for copy/pasting :) ) : topherM -- 1999-12-31 23:59
+
+
+abbasA -- 2017-10-24 12:58
+Established a components document so that each member is aware of what their specific tasks are. This document includes dependencies - things that a member requires another member to complete before moving on. Our coders are now aware of what tasks are more important for them to complete, and have commenced coding.
+Also updated the ReadME.
