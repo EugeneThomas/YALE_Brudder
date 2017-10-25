@@ -1,15 +1,31 @@
-Devlog for Team YALE Brudder.
-Example timestamp (for copy/pasting) : topherM -- 1999-12-31 23:59
 
+Team YALE BRUDDER
+Yuyang Zhang, Adam Abbas, Leo Liu, Eugene Thomas
+SoftDev1 pd7
+P#00 - Da Art of Storytellin'
+
+Devlog!
+----
+Example timestamp (for copy/pasting) : topherM -- 1999-12-31 23:59
+----
+
+abbasA -- 2017-10-25 1:01
+Fixed formatting of the devlog, added a nice header and pt a bunch of symbols everywhere because that's like how we do CS right?
+************************************************************************************************************************
 liuL -- 2017-10-24 1:18
 Initialized all of the tables, implementing posting functionality.
-
+************************************************************************************************************************
 thoasE -- 2017-10-24 1:18
 Updated the 3 already made html files, home page is working and login + create account are ready to be flasked
-
+************************************************************************************************************************
 zhangY -- 2017-10-24 1:18
 Worked on figuring out how to connect the databases with the login.
-
+************************************************************************************************************************
 abbasA -- 2017-10-24 12:58
 Established a components document so that each member is aware of what their specific tasks are. This document includes dependencies - things that a member requires another member to complete before moving on. Our coders are now aware of what tasks are more important for them to complete, and have commenced coding.
 Also updated the ReadME.
+************************************************************************************************************************
+************************************************************************************************************************
+************************************************************************************************************************
+************************************************************************************************************************
+
