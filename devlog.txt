@@ -27,6 +27,8 @@ abbasA -- 2017-10-24 12:58
 Established a components document so that each member is aware of what their specific tasks are. This document includes dependencies - things that a member requires another member to complete before moving on. Our coders are now aware of what tasks are more important for them to complete, and have commenced coding.
 Also updated the ReadME.
 ************************************************************************************************************************
+zhangY — 2017-10-25 1:00
+Created validation.py file. This file will be used to check form inputs and compare them to usernames/passwords in accounts table. Will work on connecting base html pages (landing page and login page).
 ************************************************************************************************************************
 ************************************************************************************************************************
 ************************************************************************************************************************
