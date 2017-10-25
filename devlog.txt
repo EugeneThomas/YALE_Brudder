@@ -1,5 +1,5 @@
 Devlog for Team YALE Brudder.
-Example timestamp ( for copy/pasting :) ) : topherM -- 1999-12-31 23:59
+Example timestamp (for copy/pasting) : topherM -- 1999-12-31 23:59
 
 liuL -- 2017-10-24 1:18
 Initialized all of the tables, implementing posting functionality.
