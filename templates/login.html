@@ -50,21 +50,22 @@ form {
 
 <h1><b>Please Login</b></h1>
 <p> <br>
-<!--
-    {% with msgs = get_flashed_messages() %}
-    {% for msg in msgs %}
-    {{msg}}
-    {% endfor %}
-    {% endwith %}
-    {% block content %}
--->
-<br> <br>
-<form action="/login" method="POST">
-Username <input type ="text" name = "user" placeholder="TYPE USERNAME HERE" size="35"><BR><br>
-Password <input type = "password" name = "pass" placeholder="TYPE PASSWORD HERE" size="35"><BR><br>
-<input class="button" value="Submit">
+
+{% with msgs = get_flashed_messages() %}
+{% for msg in msgs %}
+{{msg}}
+{% endfor %}
+{% endwith %}
+{% block content %}
+
+<br>
+<form action="/woo" method="POST">
+Username <input type ="text" name = "username" placeholder="TYPE USERNAME HERE" size="35"><BR><br>
+Password <input type = "password" name = "password" placeholder="TYPE PASSWORD HERE" size="35"><BR><br>
+<input class="button" type="submit">
 </form>
 <br><br>
+{% endblock %}
 </p>
 </body>
 </html>

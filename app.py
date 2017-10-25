@@ -1,7 +1,7 @@
 
 
 #lots to import
-from flask import Flask, render_template, request, session, redirect, url_for,flash
+from flask import Flask, render_template, request, session, redirect, url_for, flash
 import os
 
 app = Flask(__name__)
@@ -22,7 +22,14 @@ def login():
         #return the greeting page if the user is logged in
         return redirect("loggedin")
     #return the login page if they are not
-    return render_template("login.html", username = username)
+    return render_template("login.html", username = user1, password = pass1)
+
+@app.route("/redirection")
+def redirection():
+    if request.method == 'POST':
+        if request.form['submit'] == 'Login':
+            return redirect("woo")
+
 
 #woo will check to see the inputted username and password combination match the one on record
 @app.route("/woo", methods=["GET","POST"])
@@ -44,17 +51,17 @@ def verify():
 
     #tell user their username is wrong if it does not match
     if(username != user1):
-         flash('Wrong username!')
-         return redirect(url_for("mistake"))
+        flash('Wrong username!')
+        return render_template("login.html", username = user1, password = pass1)
 
-     
 
     #tell user their password is wrong if it does not match
     if(password != pass1):
         flash('Wrong password!')
          #return render_template("error.html", errormsg = msg)
          #return redirect(url_for("mistake", msg = msg, test = 1))
-        return redirect(url_for("mistake"))
+        ##return redirect(url_for("mistake"))
+        return render_template("login.html", username = user1, password = pass1)
 
 #Removes user from the session (if they were in it to begin with), and then tells them
 @app.route("/loggedout", methods=["GET","POST"])
