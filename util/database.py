@@ -1,7 +1,7 @@
 import datetime
 import sqlite3
 
-db = sqlite3.connect("YALE_BRUDDAH")
+db = sqlite3.connect("YALE_BRUDDER")
 c = db.cursor()
 
 def initialize_tables():
@@ -31,3 +31,10 @@ def new_post(name, title, content):
         command = 'INSERT INTO blog VALUES(%s, %s, %s, %s)'.format(name,title,content,timestamp())
     else:
         redirect(url_for(login))
+
+def get_post(name):
+
+def get_all_post():
+
+def ret_acc_pass(username, password):
+    command = "SELECT FROM accounts
