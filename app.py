@@ -12,7 +12,7 @@ pass1 = "password"
 app.secret_key = os.urandom(26)
 
 #initial login page will render form if not logged in already, and will render a greeting otherwise
-@app.route("/")
+@app.route("/", methods=["GET","POST"])
 def login():
     #initializes username
     username = ""
@@ -22,19 +22,19 @@ def login():
         #return the greeting page if the user is logged in
         return redirect("loggedin")
     #return the login page if they are not
-    return render_template("landing.html", username = user1, password = pass1)
+    return render_template("landing.html")
 
-@app.route("/redirection")
+@app.route("/redirection", methods=["GET","POST"])
 def redirection():
     if request.method == 'POST':
         if request.form['submit'] == 'Login':
-            return redirect("woo")
+            return redirect("login")
         if request.form['submit'] == "Register":
-            return render_template("makeaccount.html") 
+            return redirect("makeaccount")
 
 
 #woo will check to see the inputted username and password combination match the one on record
-@app.route("/woo", methods=["GET","POST"])
+@app.route("/login", methods=["GET","POST"])
 def verify():
     if "username" in session:
         username = session["username"]
@@ -56,16 +56,13 @@ def verify():
     #tell user their username is wrong if it does not match
     if(username != user1):
         flash('Wrong username!')
-        return render_template("login.html", username = user1, password = pass1)
+        return render_template("login.html")
 
 
     #tell user their password is wrong if it does not match
     if(password != pass1):
         flash('Wrong password!')
-         #return render_template("error.html", errormsg = msg)
-         #return redirect(url_for("mistake", msg = msg, test = 1))
-        ##return redirect(url_for("mistake"))
-        return render_template("login.html", username = user1, password = pass1)
+        return render_template("login.html")
 
 #Removes user from the session (if they were in it to begin with), and then tells them
 @app.route("/loggedout", methods=["GET","POST"])
@@ -86,8 +83,8 @@ def youre_in():
        	return redirect("/")
 
 #Lets the user know they made a mistake
-@app.route("/error")
-def mistake():
+@app.route("/makeaccount")
+def makeaccount():
     #during verification, when you redirect to mistake you specify the error message and pass it over the url
     return render_template("makeaccount.html")
 
