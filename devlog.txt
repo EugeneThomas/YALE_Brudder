@@ -11,28 +11,31 @@ Devlog!
 Example timestamp (for copy/pasting) : topherM -- 1999-12-31 23:59
 ----
 
-abbasA -- 2017-10-25 1:01
-Fixed formatting of the devlog, added a nice header and pt a bunch of symbols everywhere because that's like how we do CS right?
+liuL -- 2017-10-26 13:02
+Completed validation.py. Specs included in the file itself
 ************************************************************************************************************************
-liuL -- 2017-10-24 1:18
-Initialized all of the tables, implementing posting functionality.
+liuL -- 2017-10-25 23:55
+Implemented new_acc. Needs testing & adjustment to actual usage by zhangY
 ************************************************************************************************************************
-thoasE -- 2017-10-24 1:18
-Updated the 3 already made html files, home page is working and login + create account are ready to be flasked
-************************************************************************************************************************
-zhangY -- 2017-10-24 1:18
-Worked on figuring out how to connect the databases with the login.
-************************************************************************************************************************
-abbasA -- 2017-10-24 12:58
-Established a components document so that each member is aware of what their specific tasks are. This document includes dependencies - things that a member requires another member to complete before moving on. Our coders are now aware of what tasks are more important for them to complete, and have commenced coding.
-Also updated the ReadME.
-************************************************************************************************************************
-zhangY — 2017-10-25 1:00
+zhangY — 2017-10-25 13:00
 Created validation.py file. This file will be used to check form inputs and compare them to usernames/passwords in accounts table. Will work on connecting base html pages (landing page and login page).
 ************************************************************************************************************************
 liuL -- 2017-10-25 13:00
 Implemented new_post, get_post, get_all_post, and acc_auth. Used for retrieving and making blog posts. Credential validation may be shifted to validation.py. See entry by zhangY.
 ************************************************************************************************************************
-liuL -- 2017-10-25 23:55
-Implemented new_acc. Needs testing & adjustment to actual usage by zhangY
+abbasA -- 2017-10-25 13:01
+Fixed formatting of the devlog, added a nice header and pt a bunch of symbols everywhere because that's like how we do CS right?
+************************************************************************************************************************
+liuL -- 2017-10-24 13:18
+Initialized all of the tables, implementing posting functionality.
+************************************************************************************************************************
+thoasE -- 2017-10-24 13:18
+Updated the 3 already made html files, home page is working and login + create account are ready to be flasked
+************************************************************************************************************************
+zhangY -- 2017-10-24 13:18
+Worked on figuring out how to connect the databases with the login.
+************************************************************************************************************************
+abbasA -- 2017-10-24 12:58
+Established a components document so that each member is aware of what their specific tasks are. This document includes dependencies - things that a member requires another member to complete before moving on. Our coders are now aware of what tasks are more important for them to complete, and have commenced coding.
+Also updated the ReadME.
 ************************************************************************************************************************
