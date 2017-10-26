@@ -8,8 +8,7 @@ We will be working to create a web log hosting site, where users can create, edi
 3. Open up a web browser, and head towards localhost:5000 (type in your URL bar)
 4. Have fun! Make a new account, view some blogs, make your own - the sky's the limit.
 
-##### DEPENDENCIES #####
-###### Things You Need ######
+#### DEPENDENCIES/THINGS YOU NEED ####
 1. Python (install from the interwebs)
 2. Flask ( `pip install flask` )
 3. SQLite (interwebs)
