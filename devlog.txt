@@ -11,6 +11,9 @@ Devlog!
 Example timestamp (for copy/pasting) : topherM -- 1999-12-31 23:59
 ----
 
+liuL -- 2017-10-26 13:02
+Completed validation.py. Specs included in the file itself
+************************************************************************************************************************
 liuL -- 2017-10-25 23:55
 Implemented new_acc. Needs testing & adjustment to actual usage by zhangY
 ************************************************************************************************************************
