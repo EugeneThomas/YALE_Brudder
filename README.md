@@ -15,3 +15,8 @@ We will be working to create a web log hosting site, where users can create, edi
 2. Flask ( `pip install flask` )
 3. SQLite (interwebs)
 4. A Web Browser :)
+
+#### FILES/DIRECTORIES THAT DO STUFF ####
+1. `app.py`
+2. templates
+3. util
