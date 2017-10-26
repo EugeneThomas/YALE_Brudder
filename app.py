@@ -22,13 +22,15 @@ def login():
         #return the greeting page if the user is logged in
         return redirect("loggedin")
     #return the login page if they are not
-    return render_template("login.html", username = user1, password = pass1)
+    return render_template("landing.html", username = user1, password = pass1)
 
 @app.route("/redirection")
 def redirection():
     if request.method == 'POST':
         if request.form['submit'] == 'Login':
             return redirect("woo")
+        if request.form['submit'] == "Register":
+            return render_template("makeaccount.html") 
 
 
 #woo will check to see the inputted username and password combination match the one on record
@@ -38,6 +40,8 @@ def verify():
         username = session["username"]
         #return the greeting page if the user is logged in
         return redirect("loggedin")
+    else:
+        return render_template("login.html", username = user1, password = pass1)
 
     username = request.form["username"]
     password = request.form["password"]
