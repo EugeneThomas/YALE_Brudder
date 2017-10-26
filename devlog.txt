@@ -30,8 +30,9 @@ Also updated the ReadME.
 zhangY — 2017-10-25 1:00
 Created validation.py file. This file will be used to check form inputs and compare them to usernames/passwords in accounts table. Will work on connecting base html pages (landing page and login page).
 ************************************************************************************************************************
-liuL -- 2017-10-25 1:00
+liuL -- 2017-10-25 13:00
 Implemented new_post, get_post, get_all_post, and acc_auth. Used for retrieving and making blog posts. Credential validation may be shifted to validation.py. See entry by zhangY.
 ************************************************************************************************************************
+liuL -- 2017-10-25 23:55
+Implemented new_acc. Needs testing & adjustment to actual usage by zhangY
 ************************************************************************************************************************
-
