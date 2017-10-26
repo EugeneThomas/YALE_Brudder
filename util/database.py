@@ -29,7 +29,8 @@ def timestamp():
 #to make a new post
 def new_post(name, title, content,logged_in):
     if(logged_in):
-        command = 'INSERT INTO blog VALUES(%s, %s, %s, %s)'.format(name,title,content,timestamp())
+        command = 'INSERT INTO blog VALUES({0}, {1}, {2}, {3})'.format(name,title,content,timestamp())
+        c.execute(command)
     else:
         redirect(url_for(login))
 
@@ -42,9 +43,24 @@ def get_post(name):
 def get_all_post():
     command = "SELECT post_title, blog.name FROM blog;"
     return c.execute(command)
+
+#to add new accounts
+def new_acc(displayed_name, username, password):
+    command = "SELECT user FROM accounts WHERE user={0};".format(displayed_name)
+    duplicate_name = c.execute(command)
+    command = "SELECT username FROM accounts WHERE username={0};".format(username)
+    duplicate_username = c.execute(command)
+    if(duplicate_name != None):
+        return "That name has been taken!"
+    if(duplicate_username != None):
+        return "That username has been taken!"
+    command = "INSERT INTO accounts VALUES({0},{1},{2});".format(displayed_name, username, password);
+    c.execute(command)
     
+    
+#to authenticate username password commbination
 def acc_auth(username, password):
     command = "SELECT username, password FROM accounts WHERE username=\""+username+"\", password =\""+password+"\";"
-    if c.execute(command) == null:
+    if c.execute(command) == None:
         return False
     return True
