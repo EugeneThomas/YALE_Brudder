@@ -60,7 +60,10 @@ def new_acc(displayed_name, username, password):
     
 #to authenticate username password commbination
 def acc_auth(username, password):
-    command = "SELECT username, password FROM accounts WHERE username=\""+username+"\", password =\""+password+"\";"
+    command = 'SELECT username, password FROM accounts WHERE username="{0}", password ="{1}";'.format(username, password)
     if c.execute(command) == None:
         return False
     return True
+
+c.commit()
+c.close()
