@@ -32,7 +32,19 @@ def redirection():
         if request.form['submit'] == "Register":
             return redirect("makeaccount")
 
-
+@app.route("/register")
+def register():
+    if request.method == 'POST':
+        user = (request.form['submit'] == 'user')
+        pass1 = (request.form['submit'] == "pass")
+        pass2 = (request.form['submit'] == "pass2")
+        if pass1 == pass2 and request.form['submit'] == 'Submit':
+            util.database.new_acc("chicken", user, pass1)
+            flash('Account has been successfully made')
+            return redirect("/")
+        else:
+            flash('Passwords do not match')
+            
 #woo will check to see the inputted username and password combination match the one on record
 @app.route("/login", methods=["GET","POST"])
 def verify():
