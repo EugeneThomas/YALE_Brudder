@@ -43,7 +43,8 @@ def register():
             return redirect("/")
         else:
             flash('Passwords do not match')
-            
+            return render_template("makeaccount.html")
+
 #woo will check to see the inputted username and password combination match the one on record
 @app.route("/login", methods=["GET","POST"])
 def verify():

@@ -1,72 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login!</title>
-<style>
-body {
-    background-color:white;
-}
-h1 {
-    color: white;
-    background-color: black;
-    padding: 40px;
-    font-size: 50px;
-    text-align: center;
-}
-
-p {
-    font-family: verdana;
-    font-size: 20px;
-    background-color: white;
-    text-align: center;
-    color: black;
-}
-form {
-  font-family: verdana;
-  font-size: 25px;
-  background-color: white;
-  text-align: center;
-  color: black;
-}
-.button{
-    background-color: black;
-    border: 2px solid black;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    font-size: 25px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-.button:hover{
-    background-color: white;
-    color: black;
-    border: 2px solid black;
-}
-
-</style>
+<title>Make an account!</title>
 </head>
 <body>
-
-<h1><b>Please Login</b></h1>
-<p> <br>
-
-    {% with msgs = get_flashed_messages() %}
-    {% for msg in msgs %}
-    {{msg}}
-    {% endfor %}
-    {% endwith %}
-    {% block content %}
-
+  <center>
+<h1><b>Please Make an Account!</b></h1>
 <br>
-<form action="/register" method="POST">
+  <font size = "8" color = "red">
+  {% with msgs = get_flashed_messages() %}
+  {% for msg in msgs %}
+  {{msg}}
+  {% endfor %}
+  {% endwith %}
+  {% block content %}
+  </font>
+<br>
+<form action="/login" method="POST">
 New Username <input type ="text" name = "user" placeholder="TYPE USERNAME HERE" size="35"><BR><br>
 New Password <input type = "password" name = "pass" placeholder="TYPE PASSWORD HERE" size="35"><BR><br>
 Confirm Password <input type = "password" name = "pass2" placeholder="CONFIRM PASSWORD" size="35"><BR><br>
-<button type ="submit" name="submit" value="submit"><font size="8">Submit</font></button><br>
+<button type="submit"><font size="5">Submit!</font></button>
 </form>
 <br><br>
-{% endblock %} 
-</p>
+{% endblock %}
+</center>
 </body>
 </html>
