@@ -40,10 +40,10 @@ def validate(username, password):
     '''
     command = "SELECT username FROM accounts WHERE username={0}".format(username)
     user_retrieved = c.execute(command)
-    if (user_retrieved = None):
+    if (user_retrieved == None):
         return [False,"Invalid username"]
     command = "SELECT username FROM accounts WHERE usename={0}, password={1}".format(username, password)
     user_retrieved = c.execute(command)
-    if (user_retrieved = None):
+    if (user_retrieved == None):
         return [False,"Wrong password"]
     return [True, username]

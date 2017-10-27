@@ -36,7 +36,7 @@ def new_post(name, title, content,logged_in):
 
 #to retrieve all posts from a user
 def get_post(name):
-    command = "SELECT * FROM  blog;"
+    command = "SELECT * FROM  blog where name = {0};".format(name)
     return c.execute(command)
 
 #to retrieve all post titles and username

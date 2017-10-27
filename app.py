@@ -2,8 +2,8 @@
 
 #lots to import
 from flask import Flask, render_template, request, session, redirect, url_for, flash
+import util.validation
 import os
-
 app = Flask(__name__)
 user1 = "username"
 pass1 = "password"
@@ -39,7 +39,7 @@ def register():
         pass1 = (request.form['submit'] == "pass")
         pass2 = (request.form['submit'] == "pass2")
         if pass1 == pass2 and request.form['submit'] == 'Submit':
-            util.database.new_acc("chicken", user, pass1)
+            validation.new_acc("chicken", user, pass1)
             flash('Account has been successfully made')
             return redirect("/")
         else:
