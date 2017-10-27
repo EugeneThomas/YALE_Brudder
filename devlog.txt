@@ -11,7 +11,7 @@ Devlog!
 Example timestamp (for copy/pasting) : topherM -- 1999-12-31 23:59
 ----
 
-liuL -- 2017-10-26 21:34
+liuL -- 2017-10-26 17:34
 Changed to string formatting for ease of modification and more readable code.
 ************************************************************************************************************************
 liuL -- 2017-10-26 13:02
