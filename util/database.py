@@ -4,6 +4,7 @@ import sqlite3
 db = sqlite3.connect("YALE_BRUDDER")
 c = db.cursor()
 
+
 def initialize_tables():
     command = '''
     CREATE TABLE accounts(
@@ -65,5 +66,5 @@ def acc_auth(username, password):
         return False
     return True
 
-c.commit()
-c.close()
+db.commit()
+db.close()

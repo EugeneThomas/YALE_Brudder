@@ -2,7 +2,7 @@
 
 #lots to import
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-import util.validation
+import util.database as database
 import os
 app = Flask(__name__)
 user1 = "username"
@@ -32,14 +32,13 @@ def redirection():
         if request.form['submit'] == "Register":
             return redirect("makeaccount")
 
-@app.route("/register")
+@app.route("/register", methods=["GET","POST"])
 def register():
-    if request.method == 'POST':
         user = (request.form['submit'] == 'user')
         pass1 = (request.form['submit'] == "pass")
         pass2 = (request.form['submit'] == "pass2")
         if pass1 == pass2 and request.form['submit'] == 'Submit':
-            validation.new_acc("chicken", user, pass1)
+            database.new_acc("chicken", user, pass1)
             flash('Account has been successfully made')
             return redirect("/")
         else:
