@@ -11,7 +11,7 @@ Devlog!
 Example timestamp (for copy/pasting) : topherM -- 1999-12-31 23:59
 ----
 zhangY— 2017-10-26 23:00
-Updated design.pdf. Attempted to connect html for creating account with table from database and app.py. 
+Updated design.pdf. Attempted to connect html for creating account with table from database and app.py. Added __init__.py to util so util can be viewed as a package. Attempted to fix login flashes.
 *Problem still occurs where “method is not allowed for the requested URL”.
 ************************************************************************************************************************
 liuL -- 2017-10-26 17:34
