@@ -34,9 +34,9 @@ def redirection():
 
 @app.route("/register", methods=["GET","POST"])
 def register():
-        user = (request.form['submit'] == 'user')
-        pass1 = (request.form['submit'] == "pass")
-        pass2 = (request.form['submit'] == "pass2")
+        user = (request.form['submit'] =="user")
+        pass1 = (request.form['submit']=="pass")
+        pass2 = (request.form['submit']=="pass2")
         if pass1 == pass2 and request.form['submit'] == 'Submit':
             database.new_acc("chicken", user, pass1)
             flash('Account has been successfully made')
