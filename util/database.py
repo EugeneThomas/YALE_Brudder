@@ -8,7 +8,6 @@ c = db.cursor()
 def initialize_tables():
     command = '''
     CREATE TABLE accounts(
-        name TEXT,
         username TEXT,
         password TEXT,
         PRIMARY KEY( name, username)
@@ -28,16 +27,17 @@ def timestamp():
     return('Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
 
 #to make a new post
-def new_post(name, title, content,logged_in):
+def new_post(username, title, content,logged_in):
     if(logged_in):
-        command = 'INSERT INTO blog VALUES({0}, {1}, {2}, {3})'.format(name,title,content,timestamp())
+        timestamp = timestamp()
+        command = 'INSERT INTO blog VALUES({0}, {1}, {2}, {3})'.format(username,title,content,timestamp)
         c.execute(command)
     else:
         redirect(url_for(login))
 
 #to retrieve all posts from a user
-def get_post(name):
-    command = "SELECT * FROM  blog where name = {0};".format(name)
+def get_post(username):
+    command = "SELECT * FROM  blog where name = {0};".format(username)
     return c.execute(command)
 
 #to retrieve all post titles and username
@@ -46,13 +46,9 @@ def get_all_post():
     return c.execute(command)
 
 #to add new accounts
-def new_acc(displayed_name, username, password):
-    command = "SELECT user FROM accounts WHERE user={0};".format(displayed_name)
-    duplicate_name = c.execute(command)
+def new_acc( username, password):
     command = "SELECT username FROM accounts WHERE username={0};".format(username)
     duplicate_username = c.execute(command)
-    if(duplicate_name != None):
-        return "That name has been taken!"
     if(duplicate_username != None):
         return "That username has been taken!"
     command = "INSERT INTO accounts VALUES({0},{1},{2});".format(displayed_name, username, password);
