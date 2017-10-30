@@ -62,15 +62,21 @@ def new_acc( username, password):
     
 #to authenticate username password commbination
 def acc_auth(username, password):
-    command = 'SELECT username, password FROM accounts WHERE username="{0}" AND password ="{1}";'.format(username, password)
-    valid_accounts = c.execute(command)
-    for account in valid_accounts:
-        return True
-    return False
+    command = 'SELECT username FROM accounts WHERE username="{0}";'.format(username)
+    valid_usernames = c.execute(command)
+    for account in valid_usernames:
+        command = 'SELECT username, password FROM accounts WHERE username="{0}" AND password ="{1}";'.format(username, password)
+        valid_accounts = c.execute(command)
+        for account in valid_accounts:
+            return "successful login"
+        return "wrong password"
+    return "wrong username"
 
 initialize_tables()
 new_acc("Leo","hehexd")
 print acc_auth("Leo","hehexd")
+print acc_auth("Leo","whatevs")
+print acc_auth("not Leo", "hmmmm")
 
 db.commit()
 db.close()
