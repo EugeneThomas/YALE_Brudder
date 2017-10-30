@@ -1,4 +1,4 @@
-﻿Team YALE BRUDDER
+Team YALE BRUDDER
 Yuyang Zhang, Adam Abbas, Leo Liu, Eugene Thomas
 SoftDev1 pd7
 P#00 - Da Art of Storytellin'
@@ -10,12 +10,23 @@ Devlog!
 ----
 Example timestamp (for copy/pasting) : topherM -- 1999-12-31 23:59
 ----
-
+zhangY — 2017-10-29 23:00
+Worked to finalize login and create account. Updated authorization. Implemented form for submitting blog and displayed blogs.
+************************************************************************************************************************
 abbasA -- 2017-10-29 22:55
 Created and added to changes.txt, added the updated devlog pdf. Also fixed the formatting of the devlog cause its NEWEST ENTRY ON TOP GUYS!!!!
 ************************************************************************************************************************
-liuL -- 2017-10-19 22:53
+liuL -- 2017-10-29 22:53
 Fixed errors in database.py, added several built-in credentials, as well as eliminated displayed_name
+************************************************************************************************************************
+zhangY —- 2017-10-28 23:00
+Once again worked to fix login and update register account.
+************************************************************************************************************************
+zhangY —- 2017-10-27 23:00
+Updated register within app.py. Made util directory as a package.
+************************************************************************************************************************
+zhangY —- 2017-10-26 23:17 
+Updated design.pdf. Updated create account.
 ************************************************************************************************************************
 thomasE -- 2017-10-26 13:18
 After spending last class working on some additional html, I spent today fixing the html pages since they must not include

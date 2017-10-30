@@ -86,16 +86,16 @@ def auth():
         session["username"] = username
         #if both username and password match, show them the greet page
         return render_template("home.html", username=username)
-
     #tell user their username is wrong if it does not match
-    if(username != user1 or data.acc_auth(username,password) == "wrong username"):
+    elif(username != user1 or data.acc_auth(username,password) == "wrong username"):
         flash('Wrong username!')
         return render_template("login.html")
-
-
     #tell user their password is wrong if it does not match
-    if(password != pass1 or data.acc_auth(username,password) == "wrong password"):
+    elif(password != pass1 or data.acc_auth(username,password) == "wrong password"):
         flash('Wrong password!')
+        return render_template("login.html")
+    else:
+        flash("Please enter all fields!")
         return render_template("login.html")
 
 @app.route("/newblog", methods=["GET", "POST"])
