@@ -32,14 +32,14 @@ def timestamp():
 def new_post(username, title, content,logged_in):
     if(logged_in):
         timestamp = timestamp()
-        command = 'INSERT INTO blog VALUES({0}, {1}, {2}, {3})'.format(username,title,content,timestamp)
+        command = 'INSERT INTO blog VALUES("{0}", "{1}", "{2}", "{3}")'.format(username,title,content,timestamp)
         c.execute(command)
     else:
         redirect(url_for(login))
 
 #to retrieve all posts from a user
 def get_post(username):
-    command = "SELECT * FROM  blog where name = {0};".format(username)
+    command = 'SELECT * FROM  blog where name = "{0}";'.format(username)
     return c.execute(command)
 
 #to retrieve all post titles and username
