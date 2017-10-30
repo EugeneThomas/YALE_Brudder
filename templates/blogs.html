@@ -12,22 +12,23 @@
     <th> Title and Author </th>
     <th> Blog </th>
   </tr>
-
 {% for item in collection %}
   <tr>
-
      <td>
         {{ item }}
      </td>
      <td>
-        {{ collection[item] }}
+        {{ collection [item] }}
      </td>
   </tr>
 {% endfor %}
 </table>
 <br><br>
-<form action="/redirection3" method="POST">
-<input type ="submit" name="submit" value="Home"><br><br>
+<form action="home" method="POST">
+<input type ="submit" name="submit" value="Home">
+</form>
+<br><br>
+<form action="/loggedout" method="POST">
 <input type ="submit" name="submit" value="Logout">
 </form>
 </center>

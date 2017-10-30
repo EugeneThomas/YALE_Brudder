@@ -6,28 +6,19 @@
 <body>
 <center>
 <h1><b>Welcome {{username}}!</b></h1>
-<h3>Here is the table that shows all of your blogs</h3>
-<table>
-  <tr>
-    <th> Title </th>
-    <th> Blog </th>
-  </tr>
-
+<h3>Here is the table that shows all of your blogs and even gives you a chance to edit them.</h3>
 {% for item in collection %}
-  <tr>
-
-     <td>
-        {{ item }}
-     </td>
-     <td>
-        {{ collection[item] }}
-     </td>
-  </tr>
+<form action="/editblog" method="POST">
+<input type="radio" name="blog" value={{collection[item]}}> {{item}}:  {{collection[item]}}<br><br>
 {% endfor %}
-</table>
+<input type="submit" name="Submit">
+</form>
 <br><br>
-<form action="/redirection3" method="POST">
-<input type ="submit" name="submit" value="Home"><br><br>
+<form action="home" method="POST">
+<input type ="submit" name="submit" value="Home">
+</form>
+<br><br>
+<form action="/loggedout" method="POST">
 <input type ="submit" name="submit" value="Logout">
 </form>
 </center>

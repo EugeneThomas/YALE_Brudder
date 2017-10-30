@@ -44,14 +44,18 @@ def redirection2():
         else:
             return redirect("/loggedout")
 
-@app.route("/redirection3", methods=["GET","POST"])
-def redirection3():
+@app.route("/home", methods=["GET","POST"])
+def home():
     if "username" in session:
         if request.method == 'POST':
-            if request.form['submit'] == 'Home':
-                return render_template("home.html", username=session["username"])
-            if request.form['submit'] == "Logout":
-                return redirect("/loggedout")
+            return render_template("home.html", username=session["username"])
+
+
+@app.route("/editblog", methods=["GET","POST"])
+def editblogs():
+    if "username" in session:
+        blog = request.form['blog']
+        return render_template("editblogs.html", username=session["username"], oldpost=blog)
 
 # Makes a dicitonary with all of your posts inside:
 def makedict(d, user):
@@ -59,9 +63,12 @@ def makedict(d, user):
         retd = {}
         for i in d:
             if i == session["username"]:
-                k = d[i][0]
-                v = d[i][1]
-                retd[k] = v
+                x = len(d[i])
+                while x > 0:
+                    k = d[i][x-2]
+                    v = d[i][x-1]
+                    retd[k] = v
+                    x = x - 2
         print "The ting goes..."
         print retd
         return retd
@@ -72,10 +79,12 @@ def makedict2(d, user):
         retd = {}
         for i in d:
             if i != session["username"]:
-                k = d[i][0]
-                k = k + " by " + i
-                v = d[i][1]
-                retd[k] = v
+                x = len(d[i])
+                while x > 0: 
+                    k = d[i][0]
+                    k = k + " by " + i
+                    v = d[i][1]
+                    retd[k] = v
         print retd
         return retd
 

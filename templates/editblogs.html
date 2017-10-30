@@ -7,9 +7,9 @@
 <h1>Hey {{username}}!</h1>
 <body>
 <br><br>
-<form action="/newblog" method="POST">
-  Title: <input type ="text" name = "title" placeholder="Type yer title..." size="35"><br><br><br><br>
-  <textarea name="blog" rows="20" cols="60" placeholder="Insert ya thoughts..."></textarea>
+<form action="/replaceblog" method="POST">
+  Title: <input type ="text" name = "title" placeholder="Type yer new title..." size="35"><br><br><br><br>
+  <textarea name="blog" rows="20" cols="60">{{oldpost}}</textarea>
   <br><br><br>
 <input type="submit">
 </form>
