@@ -10,6 +10,11 @@ Devlog!
 ----
 Example timestamp (for copy/pasting) : topherM -- 1999-12-31 23:59
 ----
+
+
+abbasA — 2017-10-30 8:41
+Realized our given username/password combos werent in
+************************************************************************************************************************
 zhangY — 2017-10-29 23:00
 Worked to finalize login and create account. Updated authorization. Implemented form for submitting blog and displayed blogs.
 ************************************************************************************************************************
@@ -25,7 +30,7 @@ Once again worked to fix login and update register account.
 zhangY —- 2017-10-27 23:00
 Updated register within app.py. Made util directory as a package.
 ************************************************************************************************************************
-zhangY —- 2017-10-26 23:17 
+zhangY —- 2017-10-26 23:17
 Updated design.pdf. Updated create account.
 ************************************************************************************************************************
 thomasE -- 2017-10-26 13:18
