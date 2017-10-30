@@ -25,9 +25,8 @@ def initialize_tables():
 
 #to make a new post
 def new_post(username, title, content):
-
-        command = 'INSERT INTO blog VALUES("{0}", "{1}", "{2}")'.format(username,title,content)
-        c.execute(command)
+    command = 'INSERT INTO blog VALUES("{0}", "{1}", "{2}")'.format(username,title,content)
+    c.execute(command)
 
 
 #to retrieve all posts from a user

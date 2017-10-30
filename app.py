@@ -88,13 +88,13 @@ def auth():
         return render_template("home.html", username=username)
 
     #tell user their username is wrong if it does not match
-    if(username != user1):
+    if(username != user1 or data.acc_auth(username,password) == "wrong username"):
         flash('Wrong username!')
         return render_template("login.html")
 
 
     #tell user their password is wrong if it does not match
-    if(password != pass1):
+    if(password != pass1 or data.acc_auth(username,password) == "wrong password"):
         flash('Wrong password!')
         return render_template("login.html")
 
