@@ -72,11 +72,17 @@ def acc_auth(username, password):
         return "wrong password"
     return "wrong username"
 
-initialize_tables()
+if __name__ == "__main__":
+    initialize_tables()
+    new_acc("Fluffy", "subject1")
+    new_acc("Sluffy", "subject2")
+    new_acc("Thluffy", "subject3")
+
+'''test cases not meant to be ran
 new_acc("Leo","hehexd")
 print acc_auth("Leo","hehexd")
 print acc_auth("Leo","whatevs")
 print acc_auth("not Leo", "hmmmm")
-
+'''
 db.commit()
 db.close()
