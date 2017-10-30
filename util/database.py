@@ -18,21 +18,15 @@ def initialize_tables():
         name TEXT,
         post_title TEXT,
         post_content TEXT,
-        post_timestamp BLOB
     );
     '''
     # 2 primary keys!
     c.execute(command)
 
-#to log timestamp:
-def timestamp():
-    return('Timestamp: {:%Y-%m-%d %H:%M:%S}'.format(datetime.datetime.now()))
-
 #to make a new post
 def new_post(username, title, content,logged_in):
     if(logged_in):
-        timestamp = timestamp()
-        command = 'INSERT INTO blog VALUES("{0}", "{1}", "{2}", "{3}")'.format(username,title,content,timestamp)
+        command = 'INSERT INTO blog VALUES("{0}", "{1}", "{2}", "{3}")'.format(username,title,content)
         c.execute(command)
     else:
         redirect(url_for(login))
@@ -48,7 +42,7 @@ def get_all_post():
     return c.execute(command)
 
 #to add new accounts
-def new_acc( username, password):
+def new_acc(username, password):
     command = "SELECT username FROM accounts;".format(username)
     existing_usernames = c.execute(command)
     for existing_username in existing_usernames:
@@ -58,8 +52,8 @@ def new_acc( username, password):
             return "That username has been taken!"
     command = 'INSERT INTO accounts VALUES("{0}", "{1}");'.format( username, password);
     c.execute(command)
-    
-    
+
+
 #to authenticate username password commbination
 def acc_auth(username, password):
     command = 'SELECT username FROM accounts WHERE username="{0}";'.format(username)

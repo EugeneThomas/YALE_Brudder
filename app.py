@@ -43,19 +43,27 @@ def redirection2():
         elif request.form['submit'] == "See Other Blogs":
             return render_template("blogs.html", username=session["username"])
         else:
-            flash("Youz Logged Out")
             return redirect("/loggedout")
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-        user = request.args["username"]
-        pass1 = request.args["password"]
-        pass2 = request.args["password2"]
+    if request.method == 'POST':
+        user = request.form["username"]
+        pass1 = request.form["password"]
+        pass2 = request.form["password2"]
         if pass1 == pass2:
-            database.new_acc(user,pass1)
             print "it works"
-            return render_template("home.html", username = user)
+            if database.new_acc(user, pass1) == "That username has been taken!":
+                print "it works"
+                flash("That username has been taken!")
+                return render_template("makeaccount.html")
+            else:
+                print "it works"
+                session["username"] = user
+                database.new_acc(user,pass1)
+                return render_template("home.html", username = user)
         else:
+            print "we here"
             flash("Passwords does not match")
             return render_template("makeaccount.html")
 
@@ -74,9 +82,8 @@ def auth():
     username = request.form["username"]
     password = request.form["password"]
     #checks if the form info matches the account info
-    if(username == user1 and password == pass1):
+    if((username == user1 and password == pass1) or (database.acc_auth(username, password) == "successful login")):
         session["username"] = username
-        flash('Correct information')
         #if both username and password match, show them the greet page
         return render_template("home.html", username=username)
 
