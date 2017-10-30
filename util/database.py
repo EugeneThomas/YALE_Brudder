@@ -8,10 +8,12 @@ c = db.cursor()
 def initialize_tables():
     command = '''
     CREATE TABLE accounts(
-        username TEXT,
-        password TEXT,
-        PRIMARY KEY( name, username)
+        username TEXT PRIMARY KEY,
+        password TEXT
     );
+    '''
+    c.execute(command)
+    command = '''
     CREATE TABLE blog(
         name TEXT,
         post_title TEXT,
@@ -47,20 +49,28 @@ def get_all_post():
 
 #to add new accounts
 def new_acc( username, password):
-    command = "SELECT username FROM accounts WHERE username={0};".format(username)
-    duplicate_username = c.execute(command)
-    if(duplicate_username != None):
-        return "That username has been taken!"
-    command = "INSERT INTO accounts VALUES({0},{1},{2});".format(displayed_name, username, password);
+    command = "SELECT username FROM accounts;".format(username)
+    existing_usernames = c.execute(command)
+    for existing_username in existing_usernames:
+        if existing_username == username:
+            print "duplicate username:"
+            print existing_username
+            return "That username has been taken!"
+    command = 'INSERT INTO accounts VALUES("{0}", "{1}");'.format( username, password);
     c.execute(command)
     
     
 #to authenticate username password commbination
 def acc_auth(username, password):
-    command = 'SELECT username, password FROM accounts WHERE username="{0}", password ="{1}";'.format(username, password)
-    if c.execute(command) == None:
-        return False
-    return True
+    command = 'SELECT username, password FROM accounts WHERE username="{0}" AND password ="{1}";'.format(username, password)
+    valid_accounts = c.execute(command)
+    for account in valid_accounts:
+        return True
+    return False
+
+initialize_tables()
+new_acc("Leo","hehexd")
+print acc_auth("Leo","hehexd")
 
 db.commit()
 db.close()
