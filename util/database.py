@@ -31,12 +31,31 @@ def new_post(username, title, content):
 #to retrieve all posts from a user
 def get_post(username):
     command = 'SELECT * FROM  blog where name = "{0}";'.format(username)
-    return c.execute(command)
+    blog = c.execute(command)
+    out_blog = []
+    for post in blog:
+        out_post = {}
+        out_post["username"] = post[0]
+        out_post["title"] = post[1]
+        out_post["content"] = post[2]
+        out_blog.append(out_post)
+    print out_blog
+    return out_blog
 
 #to retrieve all post titles and username
 def get_all_post():
-    command = "SELECT post_title, blog.name FROM blog;"
-    return c.execute(command)
+    command = "SELECT * FROM blog;"
+    blog = c.execute(command)
+    out_blog = []
+    for post in blog:
+        out_post = {}
+        out_post["username"] = post[0]
+        out_post["title"] = post[1]
+        out_post["content"] = post[2]
+        out_blog.append(out_post)
+    print out_blog
+    return out_blog
+
 
 #to add new accounts
 def new_acc(username, password):
@@ -68,9 +87,29 @@ if __name__ == "__main__":
     new_acc("Fluffy", "subject1")
     new_acc("Sluffy", "subject2")
     new_acc("Thluffy", "subject3")
+
+"""
+if __name__ == "__main__":
+    initialize_tables()
+    new_acc("Fluffy", "subject1")
+    new_acc("Sluffy", "subject2")
+    new_acc("Thluffy", "subject3")
     print acc_auth("Duffy","subject4")
     print acc_auth("Fluffy","subject4")
     print acc_auth("Fluffy","subject1")
+    new_post("Fluffy","Hi","HAI")
+    new_post("Fluffy","Bye","BAI")
+    new_post("Sluffy","Me","My name is Sluffy")
+    print "Fluffy:"
+    print get_post("Fluffy")
+    print "Sluffy:"
+    print get_post("Sluffy")
+    print "Thluffy:"
+    print get_post("Thluffy")
+    print "All:"
+    print get_all_post()
+"""
+
 '''test cases not meant to be ran
 new_acc("Leo","hehexd")
 print acc_auth("Leo","hehexd")
