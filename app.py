@@ -55,7 +55,17 @@ def home():
 def editblogs():
     if "username" in session:
         blog = request.form['blog']
-        return render_template("editblogs.html", username=session["username"], oldpost=blog)
+        username = session["username"]
+        arr = BLOGS[username]
+        x = 0
+        while x < len(arr):
+            if arr[x] == blog:
+                break
+            x += 1
+        x = x-1
+        while x < len(arr)-2:
+            arr[x] = arr[x+2]
+        return render_template("editblogs.html", username=session["username"], oldpost=blog, oldtitle=title)
 
 # Makes a dicitonary with all of your posts inside:
 def makedict(d, user):
@@ -80,14 +90,13 @@ def makedict2(d, user):
         for i in d:
             if i != session["username"]:
                 x = len(d[i])
-                while x > 0: 
+                while x > 0:
                     k = d[i][0]
                     k = k + " by " + i
                     v = d[i][1]
                     retd[k] = v
         print retd
         return retd
-
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -105,7 +114,7 @@ def register():
                 ##database.new_acc(user,pass1)
                 ACCOUNTS[user] = pass1
                 print ACCOUNTS
-                return render_template("home.html", username = user)
+                return render_template("home.html", username=session["username"])
         else:
             print "we here"
             flash("Passwords do not match")
