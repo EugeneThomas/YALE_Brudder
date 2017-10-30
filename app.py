@@ -100,10 +100,14 @@ def auth():
 
 @app.route("/newblog", methods=["GET", "POST"])
 def newblog():
-    blog = request.args["blog"]
-    title = request.args["title"]
-    database.new_post(session["username"],blog,title,True)
-    return redirerct("home.html", username=session["username"])
+    if "username" in session:
+        blog = request.args["blog"]
+        title = request.args["title"]
+        database.new_post(session["username"],blog,title)
+        return redirect("home.html", username=session["username"])
+    else:
+        return redirect("/")
+    
 #Removes user from the session (if they were in it to begin with), and then tells them
 @app.route("/loggedout", methods=["GET","POST"])
 def youre_out():

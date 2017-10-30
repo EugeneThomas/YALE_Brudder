@@ -24,12 +24,11 @@ def initialize_tables():
     c.execute(command)
 
 #to make a new post
-def new_post(username, title, content,logged_in):
-    if(logged_in):
-        command = 'INSERT INTO blog VALUES("{0}", "{1}", "{2}", "{3}")'.format(username,title,content)
+def new_post(username, title, content):
+
+        command = 'INSERT INTO blog VALUES("{0}", "{1}", "{2}")'.format(username,title,content)
         c.execute(command)
-    else:
-        redirect(url_for(login))
+
 
 #to retrieve all posts from a user
 def get_post(username):
