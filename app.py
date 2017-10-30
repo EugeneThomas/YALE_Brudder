@@ -39,13 +39,7 @@ def register():
         pass1 = request.args["pass"]
         pass2 = request.args["pass2"]
         if pass1 == pass2:
-            if database.acc_auth(user,pass1) != False:
-                flash('Account exists')
-                return render_template("makeaccount.html")
-            else:
                 database.new_acc(user,pass1)
-                flash("Account has been successfully made!")
-                return redirect("/")
         else:
             flash("Passwords does not match")
             return render_template("makeaccount.html")
