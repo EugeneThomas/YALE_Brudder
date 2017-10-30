@@ -3,6 +3,7 @@
 #lots to import
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 import util.database as database
+#import util.validation as validation
 import os
 app = Flask(__name__)
 user1 = "username"
@@ -32,17 +33,21 @@ def redirection():
         if request.form['submit'] == "Register":
             return redirect("makeaccount")
 
-@app.route("/register", methods=["GET","POST"])
+@app.route("/register")
 def register():
-        user = (request.form['submit'] =="user")
-        pass1 = (request.form['submit']=="pass")
-        pass2 = (request.form['submit']=="pass2")
-        if pass1 == pass2 and request.form['submit'] == 'Submit':
-            database.new_acc("chicken", user, pass1)
-            flash('Account has been successfully made')
-            return redirect("/")
+        user = request.args["user"]
+        pass1 = request.args["pass"]
+        pass2 = request.args["pass2"]
+        if pass1 == pass2:
+            if database.acc_auth(user,pass1) != False:
+                flash('Account exists')
+                return render_template("makeaccount.html")
+            else:
+                database.new_acc(user,pass1)
+                flash("Account has been successfully made!")
+                return redirect("/")
         else:
-            flash('Passwords do not match')
+            flash("Passwords does not match")
             return render_template("makeaccount.html")
 
 #woo will check to see the inputted username and password combination match the one on record
