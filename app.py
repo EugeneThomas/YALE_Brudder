@@ -6,9 +6,8 @@ import util.database as database
 #import util.validation as validation
 import os
 app = Flask(__name__)
-user1 = "username"
-pass1 = "password"
-
+ACCOUNTS = {"Username": "Password"}
+BLOGS = {}
 #creates String of 26 random characters
 app.secret_key = os.urandom(26)
 
@@ -35,15 +34,51 @@ def redirection():
 
 @app.route("/redirection2", methods=["GET","POST"])
 def redirection2():
-    if request.method == 'POST':
+    if request.method == 'POST' and "username" in session:
         if request.form['submit'] == "Make New Blog":
             return render_template("newblog.html", username=session["username"])
         elif request.form['submit'] == "View and Edit Old Blogs":
-            return render_template("oldblogs.html", username=session["username"])
+            return render_template("oldblogs.html", username=session["username"], collection=makedict(BLOGS,  session["username"]))
         elif request.form['submit'] == "See Other Blogs":
-            return render_template("blogs.html", username=session["username"])
+            return render_template("blogs.html", username=session["username"], collection=makedict2(BLOGS, session["username"]))
         else:
             return redirect("/loggedout")
+
+@app.route("/redirection3", methods=["GET","POST"])
+def redirection3():
+    if "username" in session:
+        if request.method == 'POST':
+            if request.form['submit'] == 'Home':
+                return render_template("home.html", username=session["username"])
+            if request.form['submit'] == "Logout":
+                return redirect("/loggedout")
+
+# Makes a dicitonary with all of your posts inside:
+def makedict(d, user):
+    if "username" in session:
+        retd = {}
+        for i in d:
+            if i == session["username"]:
+                k = d[i][0]
+                v = d[i][1]
+                retd[k] = v
+        print "The ting goes..."
+        print retd
+        return retd
+
+# Makes a dicitonary with all of your posts inside:
+def makedict2(d, user):
+    if "username" in session:
+        retd = {}
+        for i in d:
+            if i != session["username"]:
+                k = d[i][0]
+                k = k + " by " + i
+                v = d[i][1]
+                retd[k] = v
+        print retd
+        return retd
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -52,19 +87,19 @@ def register():
         pass1 = request.form["password"]
         pass2 = request.form["password2"]
         if pass1 == pass2:
-            print "it works"
-            if database.new_acc(user, pass1) == "That username has been taken!":
-                print "it works"
+        ##    if database.new_acc(user, pass1) == "That username has been taken!":
+            if (user in ACCOUNTS):
                 flash("That username has been taken!")
                 return render_template("makeaccount.html")
             else:
-                print "it works"
                 session["username"] = user
-                database.new_acc(user,pass1)
+                ##database.new_acc(user,pass1)
+                ACCOUNTS[user] = pass1
+                print ACCOUNTS
                 return render_template("home.html", username = user)
         else:
             print "we here"
-            flash("Passwords does not match")
+            flash("Passwords do not match")
             return render_template("makeaccount.html")
 
 #woo will check to see the inputted username and password combination match the one on record
@@ -82,28 +117,38 @@ def auth():
     username = request.form["username"]
     password = request.form["password"]
     #checks if the form info matches the account info
-    if((username == user1 and password == pass1) or (database.acc_auth(username, password) == "successful login")):
-        session["username"] = username
-        #if both username and password match, show them the greet page
-        return render_template("home.html", username=username)
-
-    #tell user their username is wrong if it does not match
-    if(username != user1):
+    if(username in ACCOUNTS):
+        if(password != ACCOUNTS[username]):
+            flash('Wrong password!')
+            return render_template("login.html")
+        else:
+            session["username"] = username
+            return render_template("home.html", username=username)
+    else:
         flash('Wrong username!')
-        return render_template("login.html")
-
-
-    #tell user their password is wrong if it does not match
-    if(password != pass1):
-        flash('Wrong password!')
         return render_template("login.html")
 
 @app.route("/newblog", methods=["GET", "POST"])
 def newblog():
-    blog = request.args["blog"]
-    title = request.args["title"]
-    database.new_post(session["username"],blog,title,True)
-    return redirerct("home.html", username=session["username"])
+    if "username" in session:
+        blog = request.form["blog"]
+        title = request.form["title"]
+        if session["username"] not in BLOGS:
+            d = []
+            d.append(title)
+            d.append(blog)
+            session["username"]
+            BLOGS[session["username"]] = d
+        else:
+            d = BLOGS[session["username"]]
+            d.append(title)
+            d.append(blog)
+            BLOGS.pop(session["username"])
+            BLOGS[session["username"]] = d
+        print BLOGS
+        return render_template("home.html", username=session["username"])
+
+
 #Removes user from the session (if they were in it to begin with), and then tells them
 @app.route("/loggedout", methods=["GET","POST"])
 def youre_out():

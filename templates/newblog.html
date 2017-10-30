@@ -3,14 +3,14 @@
 <head>
 <title>{{username}}'s BlogSpot!</title>
 </head>
-<center> 
+<center>
 <h1>Hey {{username}}!</h1>
 <body>
 <br><br>
-<form action="/newblog">
+<form action="/newblog" method="POST">
   Title: <input type ="text" name = "title" placeholder="Type yer title..." size="35"><br><br><br><br>
   <textarea name="blog" rows="20" cols="60" placeholder="Insert ya thoughts..."></textarea>
-  <br>
+  <br><br><br>
   <input type="submit">
 </form>
 </center>

@@ -5,15 +5,31 @@
 </head>
 <body>
 <center>
-<font size="12">
 <h1><b>Welcome {{username}}!</b></h1>
-</font>
-<font size="6">
-Here are other people's blogs:
-</font>
+<h3>Here is the table that shows all of your blogs</h3>
+<table>
+  <tr>
+    <th> Title </th>
+    <th> Blog </th>
+  </tr>
+
+{% for item in collection %}
+  <tr>
+
+     <td>
+        {{ item }}
+     </td>
+     <td>
+        {{ collection[item] }}
+     </td>
+  </tr>
+{% endfor %}
+</table>
 <br><br>
-<form action="/logout" method="POST">
-<button type ="submit" name="submit" value="Logout"><font size="8">Logout</font></button><br><br><br>
+<form action="/redirection3" method="POST">
+<input type ="submit" name="submit" value="Home"><br><br>
+<input type ="submit" name="submit" value="Logout">
+</form>
 </center>
 </body>
 </html>
