@@ -5,29 +5,23 @@
 </head>
 <body>
 <center>
-<font size="12">
-<h1><b>Please Login</b></h1>
-</font>
-<p> <br>
-<font size = "8" color = "red">
+<h1><b>Please Login</b></h1><br>
+<font size = "5" color = "red">
 {% with msgs = get_flashed_messages() %}
 {% for msg in msgs %}
 {{msg}}
 {% endfor %}
 {% endwith %}
-{% block content %}
 </font>
-<br>
+<br><br><br>
 <font size="5">
-<form action="/login" method="POST">
+<form action="/auth" method="POST">
 Username <input type ="text" name = "username" placeholder="TYPE USERNAME HERE" size="35"><BR><br>
 Password <input type = "password" name = "password" placeholder="TYPE PASSWORD HERE" size="35"><BR><br>
-<input type="submit" value="Submit"></button>
+<input type="submit" name="Subimt" value="Submit">
 </form>
 </font>
 <br><br>
-{% endblock %}
-</p>
 </center>
 </body>
 </html>

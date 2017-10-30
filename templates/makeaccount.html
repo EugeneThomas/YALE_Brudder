@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Make an account!</title>
+<title>Create an Account!</title>
 </head>
 <body>
-  <center>
-<h1><b>Please Make an Account!</b></h1>
-<br>
-  <font size = "8" color = "red">
-  {% with msgs = get_flashed_messages() %}
-  {% for msg in msgs %}
-  {{msg}}
-  {% endfor %}
-  {% endwith %}
-  {% block content %}
-  </font>
-<br>
-<form action="/register">
-New Username <input type ="text" name = "user" placeholder="TYPE USERNAME HERE" size="35"><BR><br>
-New Password <input type = "password" name = "pass" placeholder="TYPE PASSWORD HERE" size="35"><BR><br>
-Confirm Password <input type = "password" name = "pass2" placeholder="CONFIRM PASSWORD" size="35"><BR><br>
-<button type="submit"><font size="5">Submit!</font></button>
+<center>
+<h1><b>Please Create an Account</b></h1><br>
+<font size = "5" color = "red">
+{% with msgs = get_flashed_messages() %}
+{% for msg in msgs %}
+{{msg}}
+{% endfor %}
+{% endwith %}
+</font>
+<br><br><br>
+<font size="5">
+<form action="/register" method="POST">
+Username <input type ="text" name = "username" placeholder="TYPE USERNAME HERE" size="35"><BR><br>
+Password <input type = "password" name = "password" placeholder="TYPE PASSWORD HERE" size="35"><BR><br>
+Confirm Password <input type = "password" name = "password2" placeholder="TYPE PASSWORD HERE" size="35"><BR><br>
+<input type="submit" name="submit" value="Submit">
 </form>
+</font>
 <br><br>
-{% endblock %}
 </center>
 </body>
 </html>

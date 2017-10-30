@@ -3,15 +3,16 @@
 <head>
 <title>{{username}}'s BlogSpot!</title>
 </head>
+<center> 
+<h1>Hey {{username}}!</h1>
 <body>
-<center>
-<font size="12">
-<h1><b>Welcome {{username}}!</b></h1>
-</font>
-<font size="6">
-Here are other people's blogs:
-</font>
 <br><br>
+<form action="/newblog">
+  Title: <input type ="text" name = "title" placeholder="Type yer title..." size="35"><br><br><br><br>
+  <textarea name="blog" rows="20" cols="60" placeholder="Insert ya thoughts..."></textarea>
+  <br>
+  <input type="submit">
+</form>
 </center>
 </body>
 </html>

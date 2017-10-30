@@ -2,48 +2,16 @@
 <html>
 <head>
 <title>{{username}}'s BlogStop</title>
-<style>
-body {
-    background-color:white;
-}
-h1 {
-    color: white;
-    background-color: black;
-    padding: 40px;
-    font-size: 50px;
-    text-align: center;
-}
-
-p {
-    font-family: verdana;
-    font-size: 20px;
-    background-color: white;
-    text-align: center;
-    color: black;
-}
-form {
-  font-family: verdana;
-  font-size: 25px;
-  background-color: white;
-  text-align: center;
-  color: black;
-}
-.button{
-    background-color: black;
-    border: 2px solid black;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    font-size: 25px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-.button:hover{
-    background-color: white;
-    color: black;
-    border: 2px solid black;
-}
-
-</style>
+<center>
+<h1>Hello {{username}}!</h1>
+<br> <br>
+<body>
+<form action="/redirection2" method="POST">
+<button type ="submit" name="submit" value="Make New Blog"><font size="6">Make New Blog</font></button><br><br><br>
+<button type ="submit" name="submit" value="View and Edit Old Blogs"><font size="6">View/Edit Old Blogs</font></button><br><br><br>
+<button type ="submit" name="submit" value="See Other Blogs"><font size="6">View Other Users' Blogs</font></button><br><br><br>
+<button type ="submit" name="submit" value="Logout"><font size="6">Logout</font></button><br><br><br>
+</center>
+</body>
 </head>
 </html>

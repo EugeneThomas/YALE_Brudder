@@ -33,13 +33,28 @@ def redirection():
         if request.form['submit'] == "Register":
             return redirect("makeaccount")
 
-@app.route("/register")
+@app.route("/redirection2", methods=["GET","POST"])
+def redirection2():
+    if request.method == 'POST':
+        if request.form['submit'] == "Make New Blog":
+            return render_template("newblog.html", username=session["username"])
+        elif request.form['submit'] == "View and Edit Old Blogs":
+            return render_template("oldblogs.html", username=session["username"])
+        elif request.form['submit'] == "See Other Blogs":
+            return render_template("blogs.html", username=session["username"])
+        else:
+            flash("Youz Logged Out")
+            return redirect("/loggedout")
+
+@app.route("/register", methods=["GET", "POST"])
 def register():
-        user = request.args["user"]
-        pass1 = request.args["pass"]
-        pass2 = request.args["pass2"]
+        user = request.args["username"]
+        pass1 = request.args["password"]
+        pass2 = request.args["password2"]
         if pass1 == pass2:
-                database.new_acc(user,pass1)
+            database.new_acc(user,pass1)
+            print "it works"
+            return render_template("home.html", username = user)
         else:
             flash("Passwords does not match")
             return render_template("makeaccount.html")
@@ -52,8 +67,10 @@ def verify():
         #return the greeting page if the user is logged in
         return redirect("loggedin")
     else:
-        return render_template("login.html", username = user1, password = pass1)
+        return render_template("login.html")
 
+@app.route("/auth", methods=["GET","POST"])
+def auth():
     username = request.form["username"]
     password = request.form["password"]
     #checks if the form info matches the account info
@@ -61,8 +78,7 @@ def verify():
         session["username"] = username
         flash('Correct information')
         #if both username and password match, show them the greet page
-            #return render_template("greet.html", username= username)
-        return redirect("/loggedin")
+        return render_template("home.html", username=username)
 
     #tell user their username is wrong if it does not match
     if(username != user1):
@@ -75,6 +91,12 @@ def verify():
         flash('Wrong password!')
         return render_template("login.html")
 
+@app.route("/newblog", methods=["GET", "POST"])
+def newblog():
+    blog = request.args["blog"]
+    title = request.args["title"]
+    database.new_post(session["username"],blog,title,True)
+    return redirerct("home.html", username=session["username"])
 #Removes user from the session (if they were in it to begin with), and then tells them
 @app.route("/loggedout", methods=["GET","POST"])
 def youre_out():
@@ -94,7 +116,7 @@ def youre_in():
        	return redirect("/")
 
 #Lets the user know they made a mistake
-@app.route("/makeaccount")
+@app.route("/makeaccount", methods=["GET", "POST"])
 def makeaccount():
     #during verification, when you redirect to mistake you specify the error message and pass it over the url
     return render_template("makeaccount.html")
