@@ -1,4 +1,4 @@
-Team YALE BRUDDER
+﻿Team YALE BRUDDER
 Yuyang Zhang, Adam Abbas, Leo Liu, Eugene Thomas
 SoftDev1 pd7
 P#00 - Da Art of Storytellin'
@@ -39,4 +39,7 @@ Implemented new_acc. Needs testing & adjustment to actual usage by zhangY
 thomasE -- 2017-10-26 1:18
 After spending last class working on some additional html, I spent today fixing the html pages since they must not include
 any CSS.
+************************************************************************************************************************
+liuL -- 2017-10-19 22:53
+Fixed errors in database.py, added several built-in credentials, as well as eliminated displayed_name
 ************************************************************************************************************************
