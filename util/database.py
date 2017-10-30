@@ -17,10 +17,9 @@ def initialize_tables():
     CREATE TABLE blog(
         name TEXT,
         post_title TEXT,
-        post_content TEXT,
+        post_content TEXT
     );
     '''
-    # 2 primary keys!
     c.execute(command)
 
 #to make a new post
@@ -69,7 +68,9 @@ if __name__ == "__main__":
     new_acc("Fluffy", "subject1")
     new_acc("Sluffy", "subject2")
     new_acc("Thluffy", "subject3")
-
+    print acc_auth("Duffy","subject4")
+    print acc_auth("Fluffy","subject4")
+    print acc_auth("Fluffy","subject1")
 '''test cases not meant to be ran
 new_acc("Leo","hehexd")
 print acc_auth("Leo","hehexd")
