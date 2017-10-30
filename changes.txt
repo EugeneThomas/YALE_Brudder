@@ -1,1 +1,3 @@
 -Decided against a double primary key system as displayed name is now the same as the username used for login
+
+-Temporarily using a dictionary based system until our database connections can be sorted out...
