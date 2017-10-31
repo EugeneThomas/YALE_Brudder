@@ -105,16 +105,13 @@ def register():
         pass1 = request.form["password"]
         pass2 = request.form["password2"]
         if pass1 == pass2:
-        ##    if database.new_acc(user, pass1) == "That username has been taken!":
-            if (user in ACCOUNTS):
-                flash("That username has been taken!")
-                return render_template("makeaccount.html")
-            else:
-                session["username"] = user
-                ##database.new_acc(user,pass1)
-                ACCOUNTS[user] = pass1
-                print ACCOUNTS
-                return render_template("home.html", username=session["username"])
+         if database.new_acc(user, pass1) == "That username has been taken!":
+             flash("That username has been taken!")
+             return render_template("makeaccount.html")
+         else:
+             session["username"] = user
+             database.new_acc(user,pass1)
+             return render_template("home.html", username=session["username"])
         else:
             print "we here"
             flash("Passwords do not match")
@@ -135,13 +132,12 @@ def auth():
     username = request.form["username"]
     password = request.form["password"]
     #checks if the form info matches the account info
-    if(username in ACCOUNTS):
-        if(password != ACCOUNTS[username]):
-            flash('Wrong password!')
-            return render_template("login.html")
-        else:
-            session["username"] = username
-            return render_template("home.html", username=username)
+    if database.acc_auth(username,password) == "wrong password":
+        flash('Wrong password!')
+        return render_template("login.html")
+    elif database.acc_auth(username,password) == "succesful login":
+        session["username"] = username
+        return render_template("home.html", username=username)
     else:
         flash('Wrong username!')
         return render_template("login.html")
