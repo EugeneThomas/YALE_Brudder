@@ -1,11 +1,13 @@
 import datetime
 import sqlite3
 
+
 db = sqlite3.connect("YALE_BRUDDER")
-c = db.cursor()
+
 
 
 def initialize_tables():
+    c.db.cursor()
     command = '''
     CREATE TABLE accounts(
         username TEXT PRIMARY KEY,
@@ -13,6 +15,8 @@ def initialize_tables():
     );
     '''
     c.execute(command)
+    c.close()
+    c.db.cursor()
     command = '''
     CREATE TABLE blog(
         name TEXT,
@@ -21,17 +25,22 @@ def initialize_tables():
     );
     '''
     c.execute(command)
+    c.close()
 
 #to make a new post
 def new_post(username, title, content):
+    c = db.cursor()
     command = 'INSERT INTO blog VALUES("{0}", "{1}", "{2}")'.format(username,title,content)
     c.execute(command)
+    c.close()
 
 
 #to retrieve all posts from a user
 def get_post(username):
+    c = db.cursor()
     command = 'SELECT * FROM  blog where name = "{0}";'.format(username)
     blog = c.execute(command)
+    c.close()
     out_blog = []
     for post in blog:
         out_post = {}
@@ -44,8 +53,10 @@ def get_post(username):
 
 #to retrieve all post titles and username
 def get_all_post():
+    c = db.cursor()
     command = "SELECT * FROM blog;"
     blog = c.execute(command)
+    c.close()
     out_blog = []
     for post in blog:
         out_post = {}
@@ -59,28 +70,36 @@ def get_all_post():
 
 #to add new accounts
 def new_acc(username, password):
+    c = db.cursor()
     command = "SELECT username FROM accounts;".format(username)
     existing_usernames = c.execute(command)
+    c.close()
     for existing_username in existing_usernames:
         if existing_username == username:
             print "duplicate username:"
             print existing_username
             return "That username has been taken!"
-    command = 'INSERT INTO accounts VALUES("{0}", "{1}");'.format( username, password);
+    c = db.cursor()
+    command = 'INSERT INTO accounts VALUES("{0}", "{1}");'.format(username, password);
     c.execute(command)
-
+    c.close()
 
 #to authenticate username password commbination
 def acc_auth(username, password):
+    c = db.cursor()
     command = 'SELECT username FROM accounts WHERE username="{0}";'.format(username)
+    c.close()
     valid_usernames = c.execute(command)
     for account in valid_usernames:
+        c = db.cursor()
         command = 'SELECT username, password FROM accounts WHERE username="{0}" AND password ="{1}";'.format(username, password)
         valid_accounts = c.execute(command)
+        c.close()
         for account in valid_accounts:
             return "successful login"
         return "wrong password"
     return "wrong username"
+
 
 if __name__ == "__main__":
     initialize_tables()
