@@ -88,8 +88,8 @@ def new_acc(username, password):
 def acc_auth(username, password):
     c = db.cursor()
     command = 'SELECT username FROM accounts WHERE username="{0}";'.format(username)
-    c.close()
     valid_usernames = c.execute(command)
+    c.close()
     for account in valid_usernames:
         c = db.cursor()
         command = 'SELECT username, password FROM accounts WHERE username="{0}" AND password ="{1}";'.format(username, password)

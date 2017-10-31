@@ -10,12 +10,13 @@ Devlog!
 ----
 Example timestamp (for copy/pasting) : topherM -- 1999-12-31 23:59
 ----
-
-
-abbasA — 2017-10-30 8:41
+zhangY —- 2017-10-30 23:00
+Updated databases to open and close cursor for each method. Removed dictionaries to implement database.
+************************************************************************************************************************
+abbasA —- 2017-10-30 8:41
 Realized our given username/password combos werent in
 ************************************************************************************************************************
-zhangY — 2017-10-29 23:00
+zhangY —- 2017-10-29 23:00
 Worked to finalize login and create account. Updated authorization. Implemented form for submitting blog and displayed blogs.
 ************************************************************************************************************************
 abbasA -- 2017-10-29 22:55
