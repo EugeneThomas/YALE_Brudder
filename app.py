@@ -7,7 +7,7 @@ import util.database as database
 import os
 app = Flask(__name__)
 ACCOUNTS = {"Username": "Password"}
-BLOGS = {}
+
 #creates String of 26 random characters
 app.secret_key = os.urandom(26)
 
@@ -38,9 +38,9 @@ def redirection2():
         if request.form['submit'] == "Make New Blog":
             return render_template("newblog.html", username=session["username"])
         elif request.form['submit'] == "View and Edit Old Blogs":
-            return render_template("oldblogs.html", username=session["username"], collection=makedict(BLOGS,  session["username"]))
+            return render_template("oldblogs.html", username=session["username"], collection=database.get_post(session["username"]))
         elif request.form['submit'] == "See Other Blogs":
-            return render_template("blogs.html", username=session["username"], collection=makedict2(BLOGS, session["username"]))
+            return render_template("blogs.html", username=session["username"], collection=get_all_post())
         else:
             return redirect("/loggedout")
 
@@ -55,48 +55,12 @@ def home():
 def editblogs():
     if "username" in session:
         blog = request.form['blog']
+        title = request.form['title']
         username = session["username"]
-        arr = BLOGS[username]
-        x = 0
-        while x < len(arr):
-            if arr[x] == blog:
-                break
-            x += 1
-        x = x-1
-        while x < len(arr)-2:
-            arr[x] = arr[x+2]
+        print blog
+        print title
+        print username
         return render_template("editblogs.html", username=session["username"], oldpost=blog, oldtitle=title)
-
-# Makes a dicitonary with all of your posts inside:
-def makedict(d, user):
-    if "username" in session:
-        retd = {}
-        for i in d:
-            if i == session["username"]:
-                x = len(d[i])
-                while x > 0:
-                    k = d[i][x-2]
-                    v = d[i][x-1]
-                    retd[k] = v
-                    x = x - 2
-        print "The ting goes..."
-        print retd
-        return retd
-
-# Makes a dicitonary with all of your posts inside:
-def makedict2(d, user):
-    if "username" in session:
-        retd = {}
-        for i in d:
-            if i != session["username"]:
-                x = len(d[i])
-                while x > 0:
-                    k = d[i][0]
-                    k = k + " by " + i
-                    v = d[i][1]
-                    retd[k] = v
-        print retd
-        return retd
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -147,19 +111,7 @@ def newblog():
     if "username" in session:
         blog = request.form["blog"]
         title = request.form["title"]
-        if session["username"] not in BLOGS:
-            d = []
-            d.append(title)
-            d.append(blog)
-            session["username"]
-            BLOGS[session["username"]] = d
-        else:
-            d = BLOGS[session["username"]]
-            d.append(title)
-            d.append(blog)
-            BLOGS.pop(session["username"])
-            BLOGS[session["username"]] = d
-        print BLOGS
+        database.new_post(session["username"], title, blog)
         return render_template("home.html", username=session["username"])
 
 
