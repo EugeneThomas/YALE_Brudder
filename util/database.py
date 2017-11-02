@@ -13,7 +13,7 @@ def initialize_tables():
         password TEXT
     );
     '''
-    db.commit()
+    c.execute(command)
     command = '''
     CREATE TABLE blog(
         name TEXT,
@@ -107,6 +107,7 @@ if __name__ == "__main__":
     new_acc("Fluffy", "subject1")
     new_acc("Sluffy", "subject2")
     new_acc("Thluffy", "subject3")
+    new_acc("Thluffy", "subject failure")
     print acc_auth("Duffy","subject4")
     print acc_auth("Fluffy","subject4")
     print acc_auth("Fluffy","subject1")
