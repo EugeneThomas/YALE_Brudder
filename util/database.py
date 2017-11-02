@@ -34,19 +34,13 @@ def new_post(username, title, content):
     c.execute(command)
     c.close()
 
-#to edit title and content
-def edit_post(username, old_title, new_title, new_content):
-    c = db.cursor()
-    command = 'UPDATE blog SET post_title = "{0}", post_content = "{1}" WHERE post_title = "{2}" AND name = "{3}"'.format(new_title, new_content, old_title, username)
-    c.execute(command)
-    c.close()
-    
+
 #to retrieve all posts from a user
 def get_post(username):
     c = db.cursor()
     command = 'SELECT * FROM  blog where name = "{0}";'.format(username)
     blog = c.execute(command)
-    
+    c.close()
     out_blog = []
     for post in blog:
         out_post = {}
@@ -54,8 +48,7 @@ def get_post(username):
         out_post["title"] = post[1]
         out_post["content"] = post[2]
         out_blog.append(out_post)
-    #print out_blog
-    c.close()
+    print out_blog
     return out_blog
 
 #to retrieve all post titles and username
@@ -63,6 +56,7 @@ def get_all_post():
     c = db.cursor()
     command = "SELECT * FROM blog;"
     blog = c.execute(command)
+    c.close()
     out_blog = []
     for post in blog:
         out_post = {}
@@ -70,8 +64,7 @@ def get_all_post():
         out_post["title"] = post[1]
         out_post["content"] = post[2]
         out_blog.append(out_post)
-    #print out_blog
-    c.close()
+    print out_blog
     return out_blog
 
 
@@ -84,8 +77,8 @@ def new_acc(username, password):
         if existing_username == username:
             print "duplicate username:"
             print existing_username
+            c.close()
             return "That username has been taken!"
-    c.close()
     c = db.cursor()
     command = 'INSERT INTO accounts VALUES("{0}", "{1}");'.format(username, password);
     c.execute(command)
@@ -96,26 +89,24 @@ def acc_auth(username, password):
     c = db.cursor()
     command = 'SELECT username FROM accounts WHERE username="{0}";'.format(username)
     valid_usernames = c.execute(command)
+    c.close()
     for account in valid_usernames:
+        c = db.cursor()
         command = 'SELECT username, password FROM accounts WHERE username="{0}" AND password ="{1}";'.format(username, password)
         valid_accounts = c.execute(command)
-        for account in valid_accounts:
-            c.close()
-            return "successful login"
         c.close()
+        for account in valid_accounts:
+            return "successful login"
         return "wrong password"
-    c.close()
     return "wrong username"
 
 
-
-'''
 if __name__ == "__main__":
     initialize_tables()
     new_acc("Fluffy", "subject1")
     new_acc("Sluffy", "subject2")
     new_acc("Thluffy", "subject3")
-'''
+
 
 if __name__ == "__main__":
     initialize_tables()
@@ -134,10 +125,6 @@ if __name__ == "__main__":
     print get_post("Sluffy")
     print "Thluffy:"
     print get_post("Thluffy")
-    print "editing Fluffy's Hi post..."
-    edit_post("Fluffy","Hi","Hello","Whats up")
-    print "Fluffy:"
-    print get_post("Fluffy")
     print "All:"
     print get_all_post()
 
