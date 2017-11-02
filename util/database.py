@@ -68,7 +68,7 @@ def get_all_post():
 
 #to add new accounts
 def new_acc(username, password):
-    command = "SELECT username FROM accounts WHERE username=="{0}";".format(username)
+    command = "SELECT username FROM accounts WHERE username=={0};".format(username)
     existing_usernames = c.execute(command)
     for existing_username in existing_usernames:
         if existing_username == username:
